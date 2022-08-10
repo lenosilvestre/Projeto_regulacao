@@ -54,28 +54,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `regulacaoBD`.`paciente`
+-- Table `regulacaoBD`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `regulacaoBD`.`paciente` (
+CREATE TABLE IF NOT EXISTS `regulacaoBD`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cns` INT(15) NOT NULL,
+  `cns` varchar(15) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `dtnasc` DATE NOT NULL,
-  `telefone` VARCHAR(11) NULL,
+  `telefone` VARCHAR(20) NULL,
   `data_entrada` DATE NOT NULL,
   `endereco_id` INT NOT NULL,
-  `procedimento_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_paciente_endereco_idx` (`endereco_id` ASC) ,
-  INDEX `fk_paciente_procedimento1_idx` (`procedimento_id` ASC) ,
-  CONSTRAINT `fk_paciente_endereco`
+  PRIMARY KEY (`id`,`cns`),
+  INDEX `fk_usuario_endereco_idx` (`endereco_id` ASC) ,
+  CONSTRAINT `fk_usuario_endereco`
     FOREIGN KEY (`endereco_id`)
     REFERENCES `regulacaoBD`.`endereco` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_paciente_procedimento1`
-    FOREIGN KEY (`procedimento_id`)
-    REFERENCES `regulacaoBD`.`procedimento` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
