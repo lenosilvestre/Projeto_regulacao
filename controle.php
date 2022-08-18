@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+  session_start();
+  }
 if((!isset ($_SESSION['nome_login']) == true) and (!isset ($_SESSION['senha']) == true))
 {
   unset($_SESSION['nome_login']);
